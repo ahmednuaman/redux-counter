@@ -22,7 +22,7 @@ class Counter extends React.Component {
     store.subscribe(() => {
       const state = store.getState()
 
-      this.state.count = state.counter
+      this.setState({ count: state.counter })
     })
   }
 
