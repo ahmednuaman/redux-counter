@@ -4,13 +4,13 @@ block vars
   - var title = 'Redux Counter Examples: Angular'
 
 block body
-  .container
+  .container(ng-app="app")
     .row
       .col-xs-8
-        input.form-control.input-lg(ng-value='count')
+        input.form-control.input-lg(counter ng-value='count')
       .col-xs-4
-        .btn-group
-          button.btn.btn-default(ng-click='increment($event)') +
-          button.btn.btn-default(ng-click='decrement($event)') -
+        counter-buttons.btn-group
+          button.btn.btn-default.btn-lg(ng-click='increment($event)') +
+          button.btn.btn-default.btn-lg(ng-click='decrement($event)') -
 
   script(src='angular.js')

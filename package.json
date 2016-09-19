@@ -4,7 +4,7 @@
   "description": "A simple Redux-backed counter with different front ends",
   "main": "index.js",
   "dependencies": {
-    "angularjs": "0.0.1",
+    "angular": "^1.5.8",
     "bootstrap": "^3.3.7",
     "handlebars": "^4.0.5",
     "jquery": "^3.1.0",
@@ -35,10 +35,11 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "build": "concurrently 'rm -rf build && mkdir build' 'npm test' && concurrently 'npm run webpack -- -p' 'npm run build:bootstrap'",
-    "build:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
+    "build": "concurrently 'rm -rf build && mkdir build' 'npm test' && concurrently 'npm run webpack -- -p' 'npm run copy'",
+    "copy": "concurrently 'npm run copy:bootstrap'",
+    "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
     "browser-sync": "node ./browser-sync.config.js",
-    "local": "concurrently 'npm run browser-sync' 'npm run watch'",
+    "local": "concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
     "start": "npm run local",
     "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'",
     "watch": "concurrently 'npm run webpack -- --watch' 'onchange \"**/*.js\" -- standard'",

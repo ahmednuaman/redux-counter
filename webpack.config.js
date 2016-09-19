@@ -37,6 +37,11 @@ let config = {
       loader: 'pug'
     }]
   },
+  resolve: {
+    alias: {
+      'reduxstore': `${src}/js/redux/`,
+    }
+  },
   plugins: ['angular', 'index', 'react', 'vanilla'].map((file) => new WebpackHtmlWebpackPlugin({
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,

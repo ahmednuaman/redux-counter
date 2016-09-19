@@ -1,3 +1,3 @@
 import store from '../store'
 
-export default () => store.dispatch({ action: 'INCREMENT' })
+export default () => store.dispatch({ type: 'INCREMENT' })
