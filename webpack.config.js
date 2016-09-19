@@ -37,13 +37,6 @@ let config = {
       loader: 'pug'
     }]
   },
-  // resolve: {
-  //   alias: {
-  //     'module': `${src}/module.js`,
-  //     'pug': path.resolve(src, '../pug'),
-  //     'src': src
-  //   }
-  // },
   plugins: ['angular', 'index', 'react', 'vanilla'].map((file) => new WebpackHtmlWebpackPlugin({
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,
