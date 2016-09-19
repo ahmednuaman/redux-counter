@@ -40,7 +40,8 @@ let config = {
   plugins: ['angular', 'index', 'react', 'vanilla'].map((file) => new WebpackHtmlWebpackPlugin({
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,
-    inject: false
+    inject: false,
+    minify: COMPRESS
   })).concat([
     new WebpackProgressBarPlugin(),
     new WebpackOnBuildPlugin((stats) => {
