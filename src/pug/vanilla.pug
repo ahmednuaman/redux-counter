@@ -1,0 +1,14 @@
+import import/_base
+
+block vars
+  - var title = 'Redux Counter Examples: Vanilla'
+
+block body
+  .container
+    .row
+      .col-xs-8
+        input#count.form-control.input-lg
+      .col-xs-4
+        .btn-group
+          button#increment.btn.btn-default +
+          button#decrement.btn.btn-default -
