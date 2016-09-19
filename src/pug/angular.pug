@@ -7,8 +7,10 @@ block body
   .container
     .row
       .col-xs-8
-        input.form-control.input-lg(ng-value="count")
+        input.form-control.input-lg(ng-value='count')
       .col-xs-4
         .btn-group
-          button.btn.btn-default(ng-click="increment($event)") +
-          button.btn.btn-default(ng-click="decrement($event)") -
+          button.btn.btn-default(ng-click='increment($event)') +
+          button.btn.btn-default(ng-click='decrement($event)') -
+
+  script(src='angular.js')
