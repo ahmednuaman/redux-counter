@@ -51,7 +51,7 @@ let config = {
   ])
 }
 
-if (process.env.COMPRESS) {
+if (COMPRESS) {
   config.plugins = [
     new webpack.optimize.UglifyJsPlugin({
       compress: {

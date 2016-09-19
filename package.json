@@ -25,6 +25,7 @@
     "html-webpack-plugin": "^2.22.0",
     "nyc": "^8.1.0",
     "on-build-webpack": "^0.1.0",
+    "onchange": "^3.0.2",
     "progress-bar-webpack-plugin": "^1.9.0",
     "pug": "^2.0.0-beta6",
     "pug-loader": "^2.3.0",
@@ -34,7 +35,11 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
+    "browser-sync": "browser-sync start --config browser-sync.config.js",
+    "local": "concurrently 'npm run browser-sync' 'npm run watch'",
+    "start": "npm run local",
     "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'",
+    "watch": "concurrently 'npm run webpack -- -w' 'onchange '**/*.js' -- standard'",
     "webpack": "webpack"
   },
   "repository": {
@@ -45,8 +50,7 @@
     "redux",
     "react",
     "angular",
-    "jquery",
-    "handlebars"
+    "vanilla"
   ],
   "author": "Ahmed Nuaman (ahmed@ahmednuaman.com)",
   "license": "MIT",
