@@ -1,0 +1,22 @@
+import import/_base
+
+block vars
+  - var title = 'Redux Counter Examples'
+
+block body
+  .container
+    .jumbotron
+      .container
+        h1 Redux Counter Examples
+        p This project is just a collection of examples that use Redux in the back and different template frameworks in the front
+
+    .list-group
+      a(href='/angular').list-group-item
+        h4.list-group-item-heading Angular 1
+        p.list-group-item-text Uses pug templates and built in ES6
+      a(href='/react').list-group-item
+        h4.list-group-item-heading React
+        p.list-group-item-text Uses JSX with Redux as the state machine
+      a(href='/vanilla').list-group-item
+        h4.list-group-item-heading Vanilla JS
+        p.list-group-item-text Apart from using ES6 though...
