@@ -19,19 +19,22 @@
     "babel-plugin-lodash": "^3.2.8",
     "babel-preset-es2015": "^6.14.0",
     "babel-register": "^6.14.0",
-    "browser-sync": "^2.15.0",
+    "browser-sync": "^2.16.0",
     "chai": "^3.5.0",
     "concurrently": "^2.2.0",
     "nyc": "^8.1.0",
+    "on-build-webpack": "^0.1.0",
+    "progress-bar-webpack-plugin": "^1.9.0",
     "pug": "^2.0.0-beta6",
     "pug-loader": "^2.3.0",
     "redux-devtools": "^3.3.1",
     "sinon": "^1.17.5",
-    "standard": "^8.0.0",
+    "standard": "^8.1.0",
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'"
+    "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
