@@ -39,7 +39,7 @@ let config = {
   },
   resolve: {
     alias: {
-      'reduxstore': `${src}/js/redux/`,
+      'reduxstore': `${src}/js/redux/`
     }
   },
   plugins: ['angular', 'index', 'react', 'vanilla'].map((file) => new WebpackHtmlWebpackPlugin({

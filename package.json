@@ -17,6 +17,7 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-lodash": "^3.2.8",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -47,7 +48,7 @@
     "local": "npm run mkdir && concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
     "mkdir": "rm -rf build && mkdir build",
     "start": "npm run local",
-    "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'",
+    "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/**/*.spec.js' 'standard'",
     "watch": "concurrently 'npm run webpack -- --watch' 'onchange \"**/*.js\" -- standard'",
     "webpack": "webpack --colors"
   },
@@ -80,7 +81,13 @@
       "transform-decorators-legacy"
     ]
   },
+  "nyc": {
+    "include": [
+      "src/js/**/*.js"
+    ]
+  },
   "standard": {
+    "parser": "babel-eslint",
     "ignore": [
       "build"
     ]

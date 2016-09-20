@@ -1,4 +1,6 @@
-import decrement from './decrement'
-import increment from './increment'
+import store from '../store'
+import decrementAction from './decrement'
+import incrementAction from './increment'
 
-export { decrement, increment }
+export const decrement = decrementAction(store)
+export const increment = incrementAction(store)
