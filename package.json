@@ -39,10 +39,11 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "build": "npm run mkdir && COMPRESS=true concurrently 'npm run webpack -- -p' 'npm run copy' && bash ./deploy.sh",
+    "build": "npm run mkdir && COMPRESS=true concurrently 'npm run webpack -- -p' 'npm run copy'",
+    "browser-sync": "node ./browser-sync.config.js",
     "copy": "concurrently 'npm run copy:bootstrap'",
     "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
-    "browser-sync": "node ./browser-sync.config.js",
+    "deploy": "npm run build && bash ./deploy.sh",
     "local": "npm run mkdir && concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
     "mkdir": "rm -rf build && mkdir build",
     "start": "npm run local",

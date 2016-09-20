@@ -46,7 +46,7 @@ let config = {
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,
     inject: false,
-    minify: COMPRESS
+    minify: COMPRESS ? {} : false
   })).concat([
     new WebpackProgressBarPlugin(),
     new WebpackOnBuildPlugin((stats) => {
@@ -58,13 +58,13 @@ let config = {
 }
 
 if (COMPRESS) {
-  config.plugins = [
+  config.plugins = config.plugins.concat([
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     })
-  ]
+  ])
 
   config.devtool = null
 }
