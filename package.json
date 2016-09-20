@@ -39,11 +39,12 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "build": "concurrently 'rm -rf build && mkdir build' && concurrently 'npm run webpack -- -p' 'npm run copy'",
+    "build": "npm run mkdir && concurrently 'npm run webpack -- -p' 'npm run copy'",
     "copy": "concurrently 'npm run copy:bootstrap'",
     "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
     "browser-sync": "node ./browser-sync.config.js",
-    "local": "concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
+    "local": "npm run mkdir && concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
+    "mkdir": "rm -rf build && mkdir build",
     "start": "npm run local",
     "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/*.spec.js' 'standard'",
     "watch": "concurrently 'npm run webpack -- --watch' 'onchange \"**/*.js\" -- standard'",
