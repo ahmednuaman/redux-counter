@@ -39,7 +39,7 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "build": "concurrently 'rm -rf build && mkdir build' 'npm test' && concurrently 'npm run webpack -- -p' 'npm run copy'",
+    "build": "concurrently 'rm -rf build && mkdir build' && concurrently 'npm run webpack -- -p' 'npm run copy'",
     "copy": "concurrently 'npm run copy:bootstrap'",
     "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
     "browser-sync": "node ./browser-sync.config.js",
