@@ -8,4 +8,12 @@ html
     title #{title}
 
   body
+    .navbar.navbar-default
+      .container
+        .navbar-header
+          a.navbar-brand(href="/") Redux Counter
+        ul.nav.navbar-nav
+          each example in ['Angular', 'React', 'Vanilla']
+            li
+              a(href=example.toLowerCase() + '.html')= example
     block body

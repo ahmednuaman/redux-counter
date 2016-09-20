@@ -13,3 +13,5 @@ store.subscribe(() => {
 
   countEl.value = state.counter
 })
+
+countEl.value = 0

@@ -11,6 +11,8 @@ angular.module('app', [])
 
         $scope.count = state.counter
       })
+
+      $scope.count = 0
     }
   }
 })
