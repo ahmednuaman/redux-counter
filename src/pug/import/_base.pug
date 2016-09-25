@@ -1,3 +1,5 @@
+include _examples.pug
+
 block vars
 doctype
 html
@@ -13,7 +15,7 @@ html
         .navbar-header
           a.navbar-brand(href="index.html") Redux Counter
         ul.nav.navbar-nav
-          each example in ['Angular', 'React', 'Vanilla']
+          each example in examples
             li
               a(href=example.toLowerCase() + '.html')= example
               

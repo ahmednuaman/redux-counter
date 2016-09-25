@@ -8,32 +8,44 @@ block body
     .jumbotron
       .container
         h1 Redux Counter Examples
-        p This project is just a collection of examples that use Redux in the back and different template frameworks in the front
+        p. 
+          This project is just a collection of examples that use Redux in the back and different template frameworks 
+          in the front
 
     .panel.panel-default
       .panel-body
         .row
           .col-sm-6
             h2 What, why?
-            p I like #[a(href='https://github.com/reactjs/redux') Redux]. It's a very elegant solution to a common problem faced by javascript developers relating to state. And by state I mean the little bit of code that's in that little container. 
-            p Now one can say "well I can just create factories/services/blahs..." and that's totally cool too, but I believe consistency is the key to harmonious projects and rolling your own stuff all the time may not be everyone's bag.
+            p. 
+              I like #[a(href='https://github.com/reactjs/redux') Redux]. It's a very elegant solution to a common 
+              problem faced by javascript developers relating to state. And by state I mean the little bit of code 
+              that's in that little container. 
+            p.
+              Now one can say "well I can just create factories/services/blahs..." and that's totally cool too, but I 
+              believe consistency is the key to harmonious projects and rolling your own stuff all the time may not be 
+              everyone's bag.
 
             h2 So what is the problem?
-            p I love javascript, but javascript has a problem, a problem with mutation of objects and arrays, for example:
+            p.
+              I love javascript, but javascript has a problem, a problem with mutation of objects and arrays, 
+              for example:
 
-            pre
-              | const someObj = { a: 1, b: 2 }
-              | const func = (obj) => obj.a = 3
-              | 
-              | func(someObj)
-              | console.log(someObj) 
+            pre.
+                const someObj = { a: 1, b: 2 }
+                const func = (obj) => obj.a = 3
+                
+                func(someObj)
+                console.log(someObj) 
 
-            p This will return #[code Object {a: 3, b: 2}], even though #[code someObj] is a constant. I love javascript. So imagine having that in lots of places with lots and lots of data. All the fun, they said.
+            p.
+              This will return #[code Object {a: 3, b: 2}], even though #[code someObj] is a constant. 
+              I love javascript. So imagine having that in lots of places with lots and lots of data. 
+              All the fun, they said.
 
           .col-sm-6
             h2 The examples
             .list-group
-              each example in [{ title: 'Angular', desc: 'Uses pug templates and built in ES6' }, { title: 'React', desc: 'Uses JSX with Redux as the state machine' }, { title: 'Vanilla', desc: 'Apart from using ES6 though...' }]
-                a(href=example.title.toLowerCase() + '.html').list-group-item
-                  h4.list-group-item-heading= example.title
-                  p.list-group-item-text= example.desc
+              each example in examples
+                a(href=example.toLowerCase() + '.html').list-group-item
+                  h4.list-group-item-heading= example

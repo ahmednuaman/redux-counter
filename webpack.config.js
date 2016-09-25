@@ -4,7 +4,9 @@ const BS_NAME = require('./package.json').name
 const CWD = process.cwd()
 const COMPRESS = !!process.env.COMPRESS
 
+const _ = require('lodash')
 const browserSync = require('browser-sync')
+const glob = require('glob')
 const path = require('path')
 const src = path.resolve(CWD, 'src')
 const webpack = require('webpack')
@@ -12,14 +14,17 @@ const WebpackHtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackOnBuildPlugin = require('on-build-webpack')
 const WebpackProgressBarPlugin = require('progress-bar-webpack-plugin')
 
+const pugFiles = glob
+  .sync(path.join(src, 'pug/*.pug'))
+  .map((file) => path.basename(file, '.pug'))
+
+const exampleFiles = _.without(pugFiles, 'index')
+const entries = _.transform(exampleFiles, (obj, file) => obj[file] = `./js/${file}/app.js`, {})
+
 let config = {
   context: src,
   cache: true,
-  entry: {
-    angular: './js/angular/app.js',
-    react: './js/react/app.js',
-    vanilla: './js/vanilla/app.js'
-  },
+  entry: entries,
   output: {
     filename: '[name].js',
     path: path.resolve(CWD, 'build/')
@@ -42,7 +47,7 @@ let config = {
       'reduxstore': `${src}/js/redux/`
     }
   },
-  plugins: ['angular', 'index', 'react', 'vanilla'].map((file) => new WebpackHtmlWebpackPlugin({
+  plugins: pugFiles.map((file) => new WebpackHtmlWebpackPlugin({
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,
     inject: false,
