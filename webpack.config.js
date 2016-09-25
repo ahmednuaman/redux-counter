@@ -19,7 +19,9 @@ const pugFiles = glob
   .map((file) => path.basename(file, '.pug'))
 
 const exampleFiles = _.without(pugFiles, 'index')
-const entries = _.transform(exampleFiles, (obj, file) => obj[file] = `./js/${file}/app.js`, {})
+const entries = _.transform(exampleFiles, (obj, file) => {
+  obj[file] = `./js/${file}/app.js`
+}, {})
 
 let config = {
   context: src,
