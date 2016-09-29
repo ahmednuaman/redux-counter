@@ -6,6 +6,7 @@ const COMPRESS = !!process.env.COMPRESS
 
 const _ = require('lodash')
 const browserSync = require('browser-sync')
+const fs = require('fs')
 const glob = require('glob')
 const path = require('path')
 const src = path.resolve(CWD, 'src')
@@ -20,7 +21,9 @@ const pugFiles = glob
 
 const exampleFiles = _.without(pugFiles, 'index')
 const entries = _.transform(exampleFiles, (obj, file) => {
-  obj[file] = `./js/${file}/app.js`
+  const dir = `./js/${file}/`
+  const app = _.head(fs.readdirSync(path.resolve(src, dir)))
+  obj[file] = `./js/${file}/${app}`
 }, {})
 
 let config = {
@@ -37,6 +40,9 @@ let config = {
       test: /\.js$/,
       loader: 'babel'
     }, {
+      test: /\.tsx?$/,
+      loader: 'ts'
+    }, {
       test: /\.json$/,
       loader: 'json'
     }, {
@@ -46,7 +52,8 @@ let config = {
   },
   resolve: {
     alias: {
-      'reduxstore': `${src}/js/redux/`
+      angular2pug: `${src}/pug/angular2/`,
+      reduxstore: `${src}/js/redux/`
     }
   },
   plugins: pugFiles.map((file) => new WebpackHtmlWebpackPlugin({
