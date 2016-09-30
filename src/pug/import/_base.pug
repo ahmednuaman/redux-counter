@@ -17,7 +17,7 @@ html
         ul.nav.navbar-nav
           each example in examples
             li
-              a(href=example.toLowerCase() + '.html')= example
+              a(href=example.replace(/\s+/, '').toLowerCase() + '.html')= example
               
     block body
 

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "sourceMap": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es6",
     "types": ["node"]
   },
   "exclude": [

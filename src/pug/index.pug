@@ -47,5 +47,5 @@ block body
             h2 The examples
             .list-group
               each example in examples
-                a(href=example.toLowerCase() + '.html').list-group-item
+                a(href=example.replace(/\s+/, '').toLowerCase() + '.html').list-group-item
                   h4.list-group-item-heading= example

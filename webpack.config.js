@@ -13,7 +13,6 @@ const src = path.resolve(CWD, 'src')
 const webpack = require('webpack')
 const WebpackHtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackOnBuildPlugin = require('on-build-webpack')
-const WebpackProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const pugFiles = glob
   .sync(path.join(src, 'pug/*.pug'))
@@ -38,9 +37,12 @@ let config = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel'
+      loader: 'babel',
+      query: {
+        compact: false
+      }
     }, {
-      test: /\.tsx?$/,
+      test: /\.ts$/,
       loader: 'ts'
     }, {
       test: /\.json$/,
@@ -62,7 +64,6 @@ let config = {
     inject: false,
     minify: COMPRESS ? {} : false
   })).concat([
-    new WebpackProgressBarPlugin(),
     new WebpackOnBuildPlugin((stats) => {
       try {
         browserSync.get(BS_NAME).reload()
