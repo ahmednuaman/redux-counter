@@ -21,7 +21,7 @@ const pugFiles = glob
 const exampleFiles = _.without(pugFiles, 'index')
 const entries = _.transform(exampleFiles, (obj, file) => {
   const dir = `./js/${file}/`
-  const app = _.head(fs.readdirSync(path.resolve(src, dir)))
+  const app = _.filter(fs.readdirSync(path.resolve(src, dir)), (file) => /^app.(j|t)s$/.test(file))
   obj[file] = `./js/${file}/${app}`
 }, {})
 
@@ -42,8 +42,8 @@ let config = {
         compact: false
       }
     }, {
-      test: /\.ts$/,
-      loader: 'ts'
+      test: /\.tsx?$/,
+      loader: 'awesome-typescript'
     }, {
       test: /\.json$/,
       loader: 'json'
@@ -53,8 +53,8 @@ let config = {
     }]
   },
   resolve: {
+    extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      angular2pug: `${src}/pug/angular2/`,
       reduxstore: `${src}/js/redux/`
     }
   },

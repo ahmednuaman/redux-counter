@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'counter',
-  template: require('angular2pug/_counter.component.pug')()
+  template: `<input ng-value="count" class="form-control input-lg"/>`
 })
 
 export class CounterComponent { }
