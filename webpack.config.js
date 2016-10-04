@@ -21,7 +21,7 @@ const pugFiles = glob
 const exampleFiles = _.without(pugFiles, 'index')
 const entries = _.transform(exampleFiles, (obj, file) => {
   const dir = `./js/${file}/`
-  const app = _.filter(fs.readdirSync(path.resolve(src, dir)), (file) => /^app.(j|t)s$/.test(file))
+  const app = _.filter(fs.readdirSync(path.resolve(src, dir)), (file) => /^app.(j|t)sx?$/.test(file))
   obj[file] = `./js/${file}/${app}`
 }, {})
 
@@ -36,13 +36,13 @@ let config = {
   devtool: 'inline-source-map',
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel',
       query: {
         compact: false
       }
     }, {
-      test: /\.tsx?$/,
+      test: /\.ts$/,
       loader: 'awesome-typescript'
     }, {
       test: /\.json$/,
@@ -53,7 +53,7 @@ let config = {
     }]
   },
   resolve: {
-    extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['', '.ts', '.js', '.jsx'],
     alias: {
       reduxstore: `${src}/js/redux/`
     }
