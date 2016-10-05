@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { decrement, increment } from 'reduxstore/action/index';
+let actions = require('reduxstore/action/index');
+let decrement = actions.decrement;
+let increment = actions.increment;
 
 @Component({
   selector: 'buttons',
@@ -12,11 +14,11 @@ import { decrement, increment } from 'reduxstore/action/index';
 })
 
 export class ButtonsComponent {
-  increment ($event) {
-    increment();
+  private decrement = ($event:any) => {
+    decrement();
   }
 
-  decrement ($event) {
-    decrement();
+  private increment = ($event:any) => {
+    increment();
   }
 }

@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
-import store from 'reduxstore/store';
+let store = require('reduxstore/store').default;
 
 @Component({
   selector: 'counter',
-  template: `<input #count class="form-control input-lg"/>`
+  template: `<input [(ngModel)]="count" class="form-control input-lg"/>`
 })
 
 export class CounterComponent {
-  constructor () {
-    store.subscribe(() => {
-      const state = store.getState();
+  private count:number = 0;
 
-      count.value = state.counter;
-    });
+  constructor () {
+    this.subscribe();
+  }
+
+  private subscribe = () => {
+    store.subscribe(this.handleAction);
+  }
+
+  private handleAction = () => {
+    const state = store.getState();
+
+    this.count = state.counter;
   }
 }
