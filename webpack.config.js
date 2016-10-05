@@ -66,8 +66,8 @@ let config = {
   })).concat([
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new WebpackProgressBarPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new WebpackProgressBarPlugin()
   ])
 }
 
