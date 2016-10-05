@@ -1,18 +1,16 @@
 'use strict'
 
-const BS_NAME = require('./package.json').name
 const CWD = process.cwd()
 const COMPRESS = !!process.env.COMPRESS
 
 const _ = require('lodash')
-const browserSync = require('browser-sync')
 const fs = require('fs')
 const glob = require('glob')
 const path = require('path')
 const src = path.resolve(CWD, 'src')
 const webpack = require('webpack')
 const WebpackHtmlWebpackPlugin = require('html-webpack-plugin')
-const WebpackOnBuildPlugin = require('on-build-webpack')
+const WebpackProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const pugFiles = glob
   .sync(path.join(src, 'pug/*.pug'))
@@ -23,7 +21,9 @@ const entries = _.transform(exampleFiles, (obj, file) => {
   const dir = `./js/${file}/`
   const app = _.filter(fs.readdirSync(path.resolve(src, dir)), (file) => /^app.(j|t)sx?$/.test(file))
   obj[file] = `./js/${file}/${app}`
-}, {})
+}, {
+  app: ['webpack/hot/dev-server', 'webpack-hot-middleware/client']
+})
 
 let config = {
   context: src,
@@ -64,11 +64,10 @@ let config = {
     inject: false,
     minify: COMPRESS ? {} : false
   })).concat([
-    new WebpackOnBuildPlugin((stats) => {
-      try {
-        browserSync.get(BS_NAME).reload()
-      } catch (e) {}
-    })
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new WebpackProgressBarPlugin(),
+    new webpack.NoErrorsPlugin()
   ])
 }
 

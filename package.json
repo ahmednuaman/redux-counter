@@ -42,8 +42,8 @@
     "html-webpack-plugin": "^2.22.0",
     "lodash": "^4.16.1",
     "nyc": "^8.1.0",
-    "on-build-webpack": "^0.1.0",
     "onchange": "^3.0.2",
+    "progress-bar-webpack-plugin": "^1.9.0",
     "pug": "^2.0.0-beta6",
     "pug-loader": "^2.3.0",
     "redux-devtools": "^3.3.1",
@@ -51,7 +51,9 @@
     "sinon": "^1.17.5",
     "standard": "^8.1.0",
     "typescript": "^2.0.3",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.3",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "scripts": {
     "build": "npm run mkdir && COMPRESS=true concurrently 'npm test' 'npm run webpack -- -p' 'npm run copy'",
@@ -60,11 +62,11 @@
     "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",
     "deploy": "npm run build && bash ./deploy.sh",
     "local": "npm run mkdir && concurrently 'npm run browser-sync' 'npm run copy' 'npm run watch'",
-    "mkdir": "rimraf build && mkdir build && echo '<html><body>Loading, yo...</body></html>' > build/index.html",
+    "mkdir": "rimraf build && mkdir build",
     "start": "npm run local",
     "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/**/*.spec.js' 'standard'",
     "watch": "concurrently 'npm run webpack -- --watch -d' 'onchange \"**/*.js\" -- standard'",
-    "webpack": "webpack --progress --colors"
+    "webpack": "webpack --colors"
   },
   "repository": {
     "type": "git",

@@ -1,14 +1,28 @@
 'use strict'
 
-const BS_NAME = require('./package.json').name
 const CWD = process.cwd()
 
 const path = require('path')
+const webpack = require('webpack')
+const webpackConfig = require('./webpack.config')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
+
+const bundler = webpack(webpackConfig)
 
 require('browser-sync')
-  .create(BS_NAME)
+  .create()
   .init({
     files: path.resolve(CWD, 'build/**/*'),
     server: path.resolve(CWD, 'build'),
-    open: 'external'
+    open: 'external',
+    middleware: [
+      webpackDevMiddleware(bundler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: {
+          colors: true
+        }
+      }),
+      webpackHotMiddleware(bundler)
+    ]
   }, () => console.log('Browsersync is running...'))
