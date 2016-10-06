@@ -1,5 +1,3 @@
-import React from 'react'
-import { render } from 'react-dom'
 import { decrement, increment } from 'reduxstore/action/index'
 
 export default () =>
