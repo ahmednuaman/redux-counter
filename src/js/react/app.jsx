@@ -2,10 +2,11 @@ import autobind from 'autobind-decorator'
 import React from 'react'
 import { render } from 'react-dom'
 import store from 'reduxstore/store'
-import { decrement, increment } from 'reduxstore/action/index'
+import Buttons from './buttons.component'
+import Counter from './counter.component'
 
 @autobind
-class Counter extends React.Component {
+class App extends React.Component {
   constructor (props) {
     super(props)
 
@@ -26,29 +27,18 @@ class Counter extends React.Component {
     })
   }
 
-  increment () {
-    increment()
-  }
-
-  decrement () {
-    decrement()
-  }
-
   render () {
     return (
       <div className='row'>
         <div className='col-xs-8'>
-          <input className='form-control input-lg' value={this.state.count} />
+          <Counter count={this.state.count} />
         </div>
         <div className='col-xs-4'>
-          <div className='btn-group'>
-            <button className='btn btn-default btn-lg' onClick={this.increment}>+</button>
-            <button className='btn btn-default btn-lg' onClick={this.decrement}>-</button>
-          </div>
+          <Buttons />
         </div>
       </div>
     )
   }
 }
 
-render(<Counter />, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
