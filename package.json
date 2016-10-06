@@ -65,7 +65,8 @@
     "mkdir": "rimraf build && mkdir build",
     "start": "npm run local",
     "test": "concurrently 'nyc --reporter=lcov --reporter=text ava --verbose test/unit/**/*.spec.js' 'standard'",
-    "watch": "concurrently 'npm run webpack -- --watch -d' 'onchange \"**/*.js\" -- standard'",
+    "watch": "concurrently 'npm run webpack -- --watch -d' 'npm run watch:lint'",
+    "watch:lint": "onchange '**/*.js' '**/*.jsx' -- standard",
     "webpack": "webpack --colors"
   },
   "repository": {

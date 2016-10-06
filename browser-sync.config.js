@@ -19,9 +19,7 @@ require('browser-sync')
     middleware: [
       webpackDevMiddleware(bundler, {
         publicPath: webpackConfig.output.publicPath,
-        stats: {
-          colors: true
-        }
+        stats: false
       }),
       webpackHotMiddleware(bundler)
     ]
