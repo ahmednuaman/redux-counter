@@ -56,7 +56,7 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "scripts": {
-    "build": "npm run mkdir && COMPRESS=true concurrently 'npm test' 'npm run webpack -- -p' 'npm run copy'",
+    "build": "npm run mkdir && NODE_ENV=production concurrently 'npm test' 'npm run webpack -- -p' 'npm run copy'",
     "browser-sync": "node ./browser-sync.config.js",
     "copy": "concurrently 'npm run copy:bootstrap'",
     "copy:bootstrap": "cp ./node_modules/bootstrap/dist/css/bootstrap*.min.css build/",

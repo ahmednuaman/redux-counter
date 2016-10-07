@@ -1,7 +1,7 @@
 'use strict'
 
 const CWD = process.cwd()
-const COMPRESS = !!process.env.COMPRESS
+const PRODUCTION = process.env.NODE_ENV === 'production'
 
 const _ = require('lodash')
 const fs = require('fs')
@@ -62,16 +62,19 @@ let config = {
     template: `./pug/${file}.pug`,
     filename: `${file}.html`,
     inject: false,
-    minify: COMPRESS ? {} : false
+    minify: PRODUCTION ? {} : false
   })).concat([
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new WebpackProgressBarPlugin()
+    new WebpackProgressBarPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    })
   ])
 }
 
-if (COMPRESS) {
+if (PRODUCTION) {
   config.plugins = config.plugins.concat([
     new webpack.optimize.UglifyJsPlugin({
       compress: {
