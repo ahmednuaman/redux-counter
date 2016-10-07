@@ -1,7 +1,8 @@
 import 'babel-polyfill'
 
-import Aurelia from 'aurelia-framework'
+import { useView } from 'aurelia-framework'
 
+@useView('./app.html')
 export default async (aurelia) => {
   aurelia.use
     .standardConfiguration()
